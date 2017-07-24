@@ -4,9 +4,6 @@ title: API Reference
 language_tabs:
   - javascript
 
-includes:
-  - errors
-
 search: true
 ---
 
@@ -14,7 +11,7 @@ search: true
 
 This REST API follow the JsonAPI specification. You can find out more about this on the [official page](http://jsonapi.org/). 
 
-The examples contain shell (curl) and javascript (node) example requests.
+The examples contain javascript (node) example requests.
 
 # Users
 

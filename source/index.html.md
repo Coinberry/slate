@@ -3,7 +3,6 @@ title: API Reference
 
 language_tabs:
   - javascript
-  - shell
 
 includes:
   - errors
@@ -23,21 +22,20 @@ The examples contain shell (curl) and javascript (node) example requests.
 
 ```javascript
 // Install required node modules
-// npm install --save yayson node-fetch
+// npm install --save node-fetch
 
-var Presenter = require('yayson')().Presenter;
 var fetch = require('node-fetch');
 
-class RegisterPresenter extends Presenter {};
-RegisterPresenter.prototype = 'users';
-
-var register = {
-  email: 'john.doe@email.com',
-  password: 'q1w2e3r4t5',
-  password_confirmation: 'q1w2e3r4t5'
+var register_data = {
+  data: {
+    type: "users",
+    attributes: {
+      email: "john.doe@email.com",
+      password: "q1w2e3r4t5",
+      password_confirmation: "q1w2e3r4t5"
+    }
+  }
 };
-
-var register_data = RegisterPresenter.render(register);
 
 fetch('https://nameless-falls-59972.herokuapp.com/registrations', {
   method: 'POST',
@@ -50,14 +48,6 @@ fetch('https://nameless-falls-59972.herokuapp.com/registrations', {
   .then(json => console.log(json))
   .catch(err => console.log(err));
 
-```
-
-```shell
-curl -H "Content-Type: application/vnd.api+json" \ 
-  -d  "email": "test2@test.com" \
-      "password": "testpassword1" \
-      "password_confirmation": "testpassword1" \ 
-      http://localhost:3000/auth
 ```
 
 > The above command returns JSON structures like this:
@@ -78,7 +68,7 @@ This endpoint creates a new user.
 
 ### HTTP Request
 
-`POST http://example.com/registrations`
+`POST http://nameless-falls-59972.herokuapp.com/registrations`
 
 ### Body Parameters
 
@@ -98,20 +88,19 @@ Content-Type | application/vnd.api+json
 
 ```javascript
 // Install required node modules
-// npm install --save yayson node-fetch
+// npm install --save node-fetch
 
-var Presenter = require('yayson')().Presenter;
 var fetch = require('node-fetch');
 
-class LoginPresenter extends Presenter {};
-LoginPresenter.prototype = 'users';
-
-var login = {
-  email: 'john.doe@email.com',
-  password: 'q1w2e3r4t5',
+var login_data = {
+  data: {
+    type: "users",
+    attributes: {
+      email: 'john.doe@email.com',
+      password: 'q1w2e3r4t5',
+    }
+  }
 };
-
-var login_data = LoginPresenter.render(login);
 
 fetch('https://nameless-falls-59972.herokuapp.com/login', {
   method: 'POST',
@@ -124,13 +113,6 @@ fetch('https://nameless-falls-59972.herokuapp.com/login', {
   .then(json => console.log(json))
   .catch(err => console.log(err));
 
-```
-
-```shell
-curl -H "Content-Type: application/vnd.api+jsonm" \
-  -d  "email":"test@test.com" \
-      "password":"q1w2e3r4t5" \
-      https://nameless-falls-59972.herokuapp.com/login
 ```
 
 > The above command returns JSON structures like this:
@@ -152,7 +134,7 @@ This endpoint creates a new login session.
 
 ### HTTP Request
 
-`POST http://example.com/login`
+`POST http://nameless-falls-59972.herokuapp.com/login`
 
 ### Body Parameters
 
@@ -165,4 +147,115 @@ password | yes
 
 Name | Value
 ---- | -----
+Content-Type | application/vnd.api+json
+
+# Orders
+
+## Create Order
+
+```javascript
+// Install required node modules
+// npm install --save node-fetch
+
+var fetch = require('node-fetch');
+
+var order_data = {
+  data: {
+    type: "orders",
+    attributes: {
+      total: 1500
+    },
+    relationships: {
+      game_tokens: {
+        data: [
+          {
+            type: "game_tokens",
+            attributes: {
+              price: 500
+            }
+          },
+          {
+            type: "game_tokens",
+            attributes: {
+              price: 500
+            }
+          },
+          {
+            type: "game_tokens",
+            attributes: {
+              price: 500
+            }
+          }
+        ]
+      }
+    }
+  }
+};
+
+fetch('https://nameless-falls-59972.herokuapp.com/orders', {
+  method: 'POST',
+  body: JSON.strigify(order_data),
+  headers: {
+    'Accept': 'application/vnd.api.v1+json',
+    'Content-Type': 'application/vnd.api+json',
+    'X-Auth-Token': 'FnNupcwL74zMVnQiV6BCKihp',
+    'X-User-Email': 'john.doe@email.com'
+  }
+})
+  .then(res => res.json())
+  .then(json => console.log(json))
+  .catch(err => console.log(err));
+
+```
+
+> The above command returns JSON structures like this:
+
+```json
+{
+    "data": {
+        "id": "2",
+        "type": "orders",
+        "attributes": {
+            "date": null,
+            "total": 1500
+        },
+        "relationships": {
+            "order-items": {
+                "data": [
+                    {
+                        "id": "4",
+                        "type": "order-items"
+                    },
+                    {
+                        "id": "5",
+                        "type": "order-items"
+                    },
+                    {
+                        "id": "6",
+                        "type": "order-items"
+                    }
+                ]
+            },
+            "user": {
+                "data": {
+                    "id": "1",
+                    "type": "users"
+                }
+            }
+        }
+    }
+}
+```
+
+### HTTP Request
+
+`POST http://nameless-falls-59972.herokuapp.com/orders`
+
+### HEADERS 
+
+Name | Value
+---- | -----
+Accept | application/vnd.api.v1+json
+X-Auth-Token | FnNupcwL74zMVnQiV6BCKihp
+X-User-Email | john.doe@email.com
 Content-Type | application/vnd.api+json

@@ -144,38 +144,3 @@ curl -H "Content-Type: application/vnd.api+jsonm" \
 
 This endpoint creates a new login session.
 
-### HTTP Request
-
-`DELETE http://example.com/auth/sign_out`
-
-## Logout User
-
-```shell
-curl -X "DELETE"  \
-  -H "uid: test2@test.com" \
-  -H "client: WRclOjBHDtgch7qdYvy_jg" 
-  -H "access-token: _CYUpiyEDRYLy1Q2qFLlA" \ 
-  http://example.com/auth/sign_out
-```
-
-> The above command returns JSON structures like this:
-
-```json
-{
-  "data": []
-}
-```
-
-This endpoint logs out a user.
-
-### HTTP Request
-
-`DELETE http://example.com/auth/sign_out`
-
-### HTTP HEAD Parameters
-
-Parameter | Required 
---------- | -------
-uid | yes
-client | yes
-access-token | yes

@@ -88,6 +88,12 @@ email | yes
 password | yes
 password_confirmation | yes
 
+### HEADERS 
+
+Name | Value
+---- | -----
+Content-Type | application/vnd.api+json
+
 ## Login User
 
 ```javascript
@@ -144,3 +150,19 @@ curl -H "Content-Type: application/vnd.api+jsonm" \
 
 This endpoint creates a new login session.
 
+### HTTP Request
+
+`POST http://example.com/login`
+
+### Body Parameters
+
+Parameter | Default 
+--------- | -------
+email | yes
+password | yes
+
+### HEADERS 
+
+Name | Value
+---- | -----
+Content-Type | application/vnd.api+json

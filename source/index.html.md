@@ -13,12 +13,9 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+This REST API follow the JsonAPI specification. You can find out more about this on the [official page](http://jsonapi.org/). 
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
+The examples contain shell (curl) and javascript (node) example requests.
 
 # Users
 
@@ -56,10 +53,11 @@ fetch('https://nameless-falls-59972.herokuapp.com/registrations', {
 ```
 
 ```shell
-curl -d "email": "test2@test.com" \
-        "password": "testpassword1" \
-        "password_confirmation": "testpassword1" \ 
-        http://localhost:3000/auth
+curl -H "Content-Type: application/vnd.api+json" \ 
+  -d  "email": "test2@test.com" \
+      "password": "testpassword1" \
+      "password_confirmation": "testpassword1" \ 
+      http://localhost:3000/auth
 ```
 
 > The above command returns JSON structures like this:
@@ -80,7 +78,7 @@ This endpoint creates a new user.
 
 ### HTTP Request
 
-`POST http://example.com/auth`
+`POST http://example.com/registrations`
 
 ### Body Parameters
 
@@ -90,38 +88,43 @@ email | yes
 password | yes
 password_confirmation | yes
 
-## Confirm User
-
-```shell
-curl http://localhost:3000/auth/confirmation?confirmation_token=token
-```
-
-> The above command returns JSON structures like this:
-
-```json
-{
-  "data": []
-}
-```
-
-This endpoint confirms a new user.
-
-### HTTP Request
-
-`GET http://example.com/auth/confirmation?confirmation_token=token`
-
-### Query Parameters
-
-Parameter | Required 
---------- | -------
-confirmation_token | yes
-
 ## Login User
 
+```javascript
+// Install required node modules
+// npm install --save yayson node-fetch
+
+var Presenter = require('yayson')().Presenter;
+var fetch = require('node-fetch');
+
+class LoginPresenter extends Presenter {};
+LoginPresenter.prototype = 'users';
+
+var login = {
+  email: 'john.doe@email.com',
+  password: 'q1w2e3r4t5',
+};
+
+var login_data = LoginPresenter.render(login);
+
+fetch('https://nameless-falls-59972.herokuapp.com/login', {
+  method: 'POST',
+  body: JSON.strigify(login_data),
+  headers: {
+    'Content-Type': 'application/vnd.api+json'
+  }
+})
+  .then(res => res.json())
+  .then(json => console.log(json))
+  .catch(err => console.log(err));
+
+```
+
 ```shell
-curl -d "email":"test@test.com" \
-        "password":"q1w2e3r4t5" \
-        http://localhost:3000/auth/sign_in
+curl -H "Content-Type: application/vnd.api+jsonm" \
+  -d  "email":"test@test.com" \
+      "password":"q1w2e3r4t5" \
+      https://nameless-falls-59972.herokuapp.com/login
 ```
 
 > The above command returns JSON structures like this:
@@ -130,28 +133,16 @@ curl -d "email":"test@test.com" \
 {
   "data":
     {
-      "id":9,
-      "type":"users",
+      "type": "sessions",
       "attributes": {
-        "email":"test2@test.com",
-        "provider":"email",
-        "uid":"test2@test.com",
+        "email": "john.doe@email.com",
+        "auth_token": "zvcU9DL4D48To5PiknCSf72C"
       }
     }
 }
 ```
 
-> In addition the following HTTP Headers are returned:
-
-```shell
-access-token  = _CYUpiyEDRYLy1Q2qFLlAw
-token-type    = Bearer
-client        = WRclOjBHDtgch7qdYvy_jg
-expiry        = 1501596921
-uid           = test2@test.com
-```
-
-This endpoint logs in a user.
+This endpoint creates a new login session.
 
 ### HTTP Request
 

@@ -3,13 +3,7 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
-  - python
   - javascript
-
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -25,165 +19,172 @@ We have language bindings in Shell, Ruby, and Python! You can view code examples
 
 This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
 
-> To authorize, use this code:
+# Users
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+## Create User (Registration)
 
 ```javascript
-const kittn = require('kittn');
+// Install required node modules
+// npm install --save yayson node-fetch
 
-let api = kittn.authorize('meowmeowmeow');
-```
+var Presenter = require('yayson')().Presenter;
+var fetch = require('node-fetch');
 
-> Make sure to replace `meowmeowmeow` with your API key.
+class RegisterPresenter extends Presenter {};
+RegisterPresenter.prototype = 'users';
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+var register = {
+  email: 'john.doe@email.com',
+  password: 'q1w2e3r4t5',
+  password_confirmation: 'q1w2e3r4t5'
+};
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+var register_data = RegisterPresenter.render(register);
 
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+fetch('https://nameless-falls-59972.herokuapp.com/registrations', {
+  method: 'POST',
+  body: JSON.strigify(register_data),
+  headers: {
+    'Content-Type': 'application/vnd.api+json'
   }
-]
-```
+})
+  .then(res => res.json())
+  .then(json => console.log(json))
+  .catch(err => console.log(err));
 
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl -d "email": "test2@test.com" \
+        "password": "testpassword1" \
+        "password_confirmation": "testpassword1" \ 
+        http://localhost:3000/auth
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> The above command returns JSON structures like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "data": {
+    "id": "8",
+    "type": "users",
+    "attributes": {
+      "email": "john.doe@email.com"
+    }
+  }
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint creates a new user.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`POST http://example.com/auth`
 
-### URL Parameters
+### Body Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Parameter | Default 
+--------- | -------
+email | yes
+password | yes
+password_confirmation | yes
 
+## Confirm User
+
+```shell
+curl http://localhost:3000/auth/confirmation?confirmation_token=token
+```
+
+> The above command returns JSON structures like this:
+
+```json
+{
+  "data": []
+}
+```
+
+This endpoint confirms a new user.
+
+### HTTP Request
+
+`GET http://example.com/auth/confirmation?confirmation_token=token`
+
+### Query Parameters
+
+Parameter | Required 
+--------- | -------
+confirmation_token | yes
+
+## Login User
+
+```shell
+curl -d "email":"test@test.com" \
+        "password":"q1w2e3r4t5" \
+        http://localhost:3000/auth/sign_in
+```
+
+> The above command returns JSON structures like this:
+
+```json
+{
+  "data":
+    {
+      "id":9,
+      "type":"users",
+      "attributes": {
+        "email":"test2@test.com",
+        "provider":"email",
+        "uid":"test2@test.com",
+      }
+    }
+}
+```
+
+> In addition the following HTTP Headers are returned:
+
+```shell
+access-token  = _CYUpiyEDRYLy1Q2qFLlAw
+token-type    = Bearer
+client        = WRclOjBHDtgch7qdYvy_jg
+expiry        = 1501596921
+uid           = test2@test.com
+```
+
+This endpoint logs in a user.
+
+### HTTP Request
+
+`DELETE http://example.com/auth/sign_out`
+
+## Logout User
+
+```shell
+curl -X "DELETE"  \
+  -H "uid: test2@test.com" \
+  -H "client: WRclOjBHDtgch7qdYvy_jg" 
+  -H "access-token: _CYUpiyEDRYLy1Q2qFLlA" \ 
+  http://example.com/auth/sign_out
+```
+
+> The above command returns JSON structures like this:
+
+```json
+{
+  "data": []
+}
+```
+
+This endpoint logs out a user.
+
+### HTTP Request
+
+`DELETE http://example.com/auth/sign_out`
+
+### HTTP HEAD Parameters
+
+Parameter | Required 
+--------- | -------
+uid | yes
+client | yes
+access-token | yes

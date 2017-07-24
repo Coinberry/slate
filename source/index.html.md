@@ -247,9 +247,145 @@ fetch('https://nameless-falls-59972.herokuapp.com/orders', {
 }
 ```
 
+This endpoint creates an order for a user.
+
 ### HTTP Request
 
 `POST http://nameless-falls-59972.herokuapp.com/orders`
+
+### HEADERS 
+
+Name | Value
+---- | -----
+Accept | application/vnd.api.v1+json
+X-Auth-Token | FnNupcwL74zMVnQiV6BCKihp
+X-User-Email | john.doe@email.com
+Content-Type | application/vnd.api+json
+
+## Show Order
+
+```javascript
+// Install required node modules
+// npm install --save node-fetch
+
+var fetch = require('node-fetch');
+
+fetch('https://nameless-falls-59972.herokuapp.com/orders/1', {
+  method: 'GET',
+  headers: {
+    'Accept': 'application/vnd.api.v1+json',
+    'Content-Type': 'application/vnd.api+json',
+    'X-Auth-Token': 'FnNupcwL74zMVnQiV6BCKihp',
+    'X-User-Email': 'john.doe@email.com'
+  }
+})
+  .then(res => res.json())
+  .then(json => console.log(json))
+  .catch(err => console.log(err));
+
+```
+
+> The above command returns JSON structures like this:
+
+```json
+
+{
+    "data": {
+        "id": "1",
+        "type": "orders",
+        "attributes": {
+            "date": null,
+            "total": 7500
+        },
+        "relationships": {
+            "order-items": {
+                "data": [
+                    {
+                        "id": "1",
+                        "type": "order-items"
+                    },
+                    {
+                        "id": "2",
+                        "type": "order-items"
+                    },
+                    {
+                        "id": "3",
+                        "type": "order-items"
+                    }
+                ]
+            },
+            "user": {
+                "data": {
+                    "id": "1",
+                    "type": "users"
+                }
+            }
+        }
+    },
+    "included": [
+        {
+            "id": "1",
+            "type": "order-items",
+            "relationships": {
+                "order": {
+                    "data": {
+                        "id": "1",
+                        "type": "orders"
+                    }
+                },
+                "game-token": {
+                    "data": {
+                        "id": "1",
+                        "type": "game-tokens"
+                    }
+                }
+            }
+        },
+        {
+            "id": "2",
+            "type": "order-items",
+            "relationships": {
+                "order": {
+                    "data": {
+                        "id": "1",
+                        "type": "orders"
+                    }
+                },
+                "game-token": {
+                    "data": {
+                        "id": "2",
+                        "type": "game-tokens"
+                    }
+                }
+            }
+        },
+        {
+            "id": "3",
+            "type": "order-items",
+            "relationships": {
+                "order": {
+                    "data": {
+                        "id": "1",
+                        "type": "orders"
+                    }
+                },
+                "game-token": {
+                    "data": {
+                        "id": "3",
+                        "type": "game-tokens"
+                    }
+                }
+            }
+        }
+    ]
+}
+```
+
+This endpoint retrieves an order for a user by Order ID
+
+### HTTP Request
+
+`GET http://nameless-falls-59972.herokuapp.com/orders/1`
 
 ### HEADERS 
 

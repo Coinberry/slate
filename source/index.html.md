@@ -146,6 +146,66 @@ Name | Value
 ---- | -----
 Content-Type | application/vnd.api+json
 
+# Payments
+
+## Create Payment Token
+
+```javascript
+var fetch = require('node-fetch');
+
+var payment_token_data = {
+  "data": {
+    "type": "payment_tokens",
+    "attributes": {
+      "country": "CA"
+    }
+  }
+}
+
+fetch('https://nameless-falls-59972.herokuapp.com/orders', {
+  method: 'POST',
+  body: JSON.strigify(payment_token_data),
+  headers: {
+    'Accept': 'application/vnd.api.v1+json',
+    'Content-Type': 'application/vnd.api+json',
+    'X-Auth-Token': 'FnNupcwL74zMVnQiV6BCKihp',
+    'X-User-Email': 'john.doe@email.com'
+  }
+})
+  .then(res => res.json())
+  .then(json => console.log(json))
+  .catch(err => console.log(err));
+
+```
+> The above command returns JSON structures like this:
+
+```json
+{
+    "data": {
+        "type": "payment_tokens",
+        "attributes": {
+            "token": {
+                "token": "4SsHztNryM67dZuSbTsX0Uu7ZbagTuAx"
+            }
+        }
+    }
+}
+```
+This endpoint creates a payment token for the currently logged in user
+
+### HTTP Request
+
+`POST http://nameless-falls-59972.herokuapp.com/payment_tokens`
+
+### HEADERS 
+
+Name | Value
+---- | -----
+Accept | application/vnd.api.v1+json
+X-Auth-Token | FnNupcwL74zMVnQiV6BCKihp
+X-User-Email | john.doe@email.com
+Content-Type | application/vnd.api+json
+
 # Orders
 
 ## Create Order

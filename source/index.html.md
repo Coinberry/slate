@@ -15,6 +15,98 @@ The examples contain javascript (node) example requests.
 
 # Users
 
+## Retrieve User
+
+```javascript
+// Install required node modules
+// npm install --save node-fetch
+
+var fetch = require('node-fetch');
+
+fetch('https://nameless-falls-59972.herokuapp.com/users/mack-daddy-email-com', {
+  method: 'GET',
+  headers: {
+  	 'Accept': 'application/vnd.api.v1+json',
+    'Content-Type': 'application/vnd.api+json'
+  }
+})
+  .then(res => res.json())
+  .then(json => console.log(json))
+  .catch(err => console.log(err));
+
+```
+
+> The above command returns JSON structures like this:
+
+```json
+{
+    "data": {
+        "id": "1",
+        "type": "users",
+        "attributes": {
+            "email": "mack.daddy@email.com",
+            "slug": "mack-daddy-email-com",
+            "first-name": "Mack",
+            "last-name": "Daddy"
+        },
+        "relationships": {
+            "purchases": {
+                "data": [
+                    {
+                        "id": "1",
+                        "type": "purchases"
+                    }
+                ]
+            },
+            "loyalty-points": {
+                "data": [
+                    {
+                        "id": "1",
+                        "type": "loyalty-points"
+                    }
+                ]
+            },
+            "stats": {
+                "data": [
+                    {
+                        "id": "1",
+                        "type": "stats"
+                    }
+                ]
+            },
+            "games": {
+                "data": [
+                    {
+                        "id": "1",
+                        "type": "games"
+                    }
+                ]
+            }
+        }
+    }
+}
+```
+
+This endpoint retrieves a user
+
+### HTTP Request
+
+`GET http://nameless-falls-59972.herokuapp.com/users/mack-daddy-email-com`
+
+### Body Parameters
+
+Parameter | Default | Accepted values
+--------- | ------- | ---------------
+include | empty | stats, games, purchases, loyalty_points
+
+
+### HEADERS 
+
+Name | Value
+---- | -----
+Content-Type | application/vnd.api+json
+Accept | application/vnd.api.v1+json
+
 ## Create User (Registration)
 
 ```javascript

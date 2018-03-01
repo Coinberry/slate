@@ -223,9 +223,25 @@
           </li>
           <li>
             <a href="#registration" class="toc-h1 toc-link" data-title="registration">Registration</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-request" class="toc-h2 toc-link" data-title="http-request">HTTP Request</a>
+                  </li>
+                  <li>
+                    <a href="#query-parameters" class="toc-h2 toc-link" data-title="query-parameters">Query Parameters</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#login" class="toc-h1 toc-link" data-title="login">Login</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-request-2" class="toc-h2 toc-link" data-title="http-request">HTTP Request</a>
+                  </li>
+                  <li>
+                    <a href="#query-parameters-2" class="toc-h2 toc-link" data-title="query-parameters">Query Parameters</a>
+                  </li>
+              </ul>
           </li>
       </div>
     </div>
@@ -250,7 +266,29 @@
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Registration Successful"</span><span class="w">
 </span><span class="p">},</span><span class="w">
-</span></code></pre><h1 id='login'>Login</h1>
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>POST http://example.com/api/auth/register</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>Email</td>
+</tr>
+<tr>
+<td>password</td>
+<td>Password</td>
+</tr>
+<tr>
+<td>confirmation_url</td>
+<td>This is the base url the user will receive in their email after registering</td>
+</tr>
+</tbody></table>
+<h1 id='login'>Login</h1>
 <blockquote>
 <p>To login a user and retrieve the JWT token, use this code:</p>
 </blockquote>
@@ -267,7 +305,25 @@
   </span><span class="s2">"jwt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTk5NDkyMDR9.MAPyjxWmxGndSP6U0R5j7LMjnXAKTE7gYge61beJngs"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Login Successful"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre><h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST http://example.com/api/auth/login</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>Email</td>
+</tr>
+<tr>
+<td>password</td>
+<td>Password</td>
+</tr>
+</tbody></table>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">

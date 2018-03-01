@@ -34,6 +34,18 @@ curl
 },
 ```
 
+### HTTP Request
+
+`POST http://example.com/api/auth/register`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+email | Email
+password | Password
+confirmation_url | This is the base url the user will receive in their email after registering
+
 # Login
 
 > To login a user and retrieve the JWT token, use this code:
@@ -54,3 +66,14 @@ curl
   "message": "Login Successful"
 }
 ```
+
+### HTTP Request
+
+`POST http://example.com/api/auth/login`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+email | Email
+password | Password

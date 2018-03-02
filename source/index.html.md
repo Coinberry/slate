@@ -98,13 +98,13 @@ curl
   "data": {
     "crypto": [
       {
-        "name": "Bitcoin",
+        "name": "BTC",
         "balance": 0.00093112,
         "high": 15890,
         "low": 11352.9
       },
       {
-        "name": "Ethereum",
+        "name": "ETH",
         "balance": 0,
         "high": 1145.83,
         "low": 2890.15
@@ -150,7 +150,12 @@ curl
         "guid": "6BFKWkdS",
         "rate": null,
         "status": "pending",
-        "token": "oOtB8pniCGs"
+        "token": "oOtB8pniCGs",
+        "withdrawal-type": "eft",
+        "withdrawal-wallet-address": null,
+        "eft-transfer-password": "bad67d62",
+        "amount-received": null,
+        "tx-hash": null
       }
     },
     {
@@ -164,7 +169,12 @@ curl
         "guid": "2L_M3eIs",
         "rate": 0.933333333333333,
         "status": "completed",
-        "token": "50bea7f7ac"
+        "token": "50bea7f7ac",
+        "withdrawal-type": null,
+        "withdrawal-wallet-address": null,
+        "eft-transfer-password": null,
+        "amount-received": null,
+        "tx-hash": null
       }
     },
     {
@@ -178,7 +188,12 @@ curl
         "guid": "dCBU4JsK",
         "rate": 14112.03,
         "status": "completed",
-        "token": null
+        "token": null,
+        "withdrawal-type": null,
+        "withdrawal-wallet-address": null,
+        "eft-transfer-password": null,
+        "amount-received": null,
+        "tx-hash": null
       }
     },
     {
@@ -192,7 +207,12 @@ curl
         "guid": "KbDrDm-3",
         "rate": 13148.35,
         "status": "completed",
-        "token": null
+        "token": null,
+        "withdrawal-type": null,
+        "withdrawal-wallet-address": null,
+        "eft-transfer-password": null,
+        "amount-received": null,
+        "tx-hash": null
       }
     },
     {
@@ -206,7 +226,12 @@ curl
         "guid": "S0zp-IrZ",
         "rate": null,
         "status": "completed",
-        "token": "420dddeee4"
+        "token": "420dddeee4",
+        "withdrawal-type": null,
+        "withdrawal-wallet-address": null,
+        "eft-transfer-password": null,
+        "amount-received": 100000,
+        "tx-hash": null
       }
     }
   ],

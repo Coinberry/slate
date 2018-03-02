@@ -228,5 +228,5 @@ curl
 
 Parameter | Description | Optional | Default |
 --------- | ----------- | -------- | ------- |
-page | Current page of results | yes | - |
-per | Number of orders per page | yes | 10|
+page[number] | Current page of results | yes | - |
+page[size] | Number of orders per page | yes | 10|

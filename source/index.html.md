@@ -96,25 +96,21 @@ curl
 ```json
 {
   "data": {
-    "crypto": [
-      {
-        "name": "BTC",
-        "balance": 0.00093112,
+    "btc": {
+      "balance": "0.01093112",
         "high": 15890,
         "low": 11352.9
-      },
-      {
-        "name": "ETH",
+    },
+      "eth": {
         "balance": 0,
         "high": 1145.83,
         "low": 2890.15
-      }
-    ],
-    "fiat": {
-      "name": "CAD",
-      "balance": 2500.01
-    },
-    "total_balance": 2516.77016
+      },
+      "fiat": {
+        "name": "CAD",
+        "balance": 2370.01
+      },
+      "total_balance": 2566.77016
   }
 }
 ```
@@ -127,11 +123,11 @@ This API call is paginated. The result will always contain a links object. If th
 
 ```shell
 curl 
-  -X GET 
-  -H "Content-Type: application/json"
-  -H "Accept: application/vnd.coinberry.v1+json"
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTk5NDkyMDR9.MAPyjxWmxGndSP6U0R5j7LMjnXAKTE7gYge61beJngs"
-  "http://example.com/api/balances"
+-X GET 
+-H "Content-Type: application/json"
+-H "Accept: application/vnd.coinberry.v1+json"
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTk5NDkyMDR9.MAPyjxWmxGndSP6U0R5j7LMjnXAKTE7gYge61beJngs"
+"http://example.com/api/balances"
 ```
 
 > The above command returns JSON structured like this:
@@ -139,8 +135,8 @@ curl
 ```json
 {
   "data": [
-    {
-      "id": "1008",
+  {
+    "id": "1008",
       "type": "withdrawal-orders",
       "attributes": {
         "amount": -30000,
@@ -157,83 +153,83 @@ curl
         "amount-received": null,
         "tx-hash": null
       }
-    },
-    {
-      "id": "1007",
-      "type": "fund-orders",
-      "attributes": {
-        "amount": 280000,
-        "date": "Feb 27 2018 8:38PM",
-        "type": "Received",
-        "currency-name": "CAD",
-        "guid": "2L_M3eIs",
-        "rate": 0.933333333333333,
-        "status": "completed",
-        "token": "50bea7f7ac",
-        "withdrawal-type": null,
-        "withdrawal-wallet-address": null,
-        "eft-transfer-password": null,
-        "amount-received": null,
-        "tx-hash": null
-      }
-    },
-    {
-      "id": "852",
-      "type": "buy-orders",
-      "attributes": {
-        "amount": 93112,
-        "date": "Jan 30 2018 12:13PM",
-        "type": "Buy",
-        "currency-name": "BTC",
-        "guid": "dCBU4JsK",
-        "rate": 14112.03,
-        "status": "completed",
-        "token": null,
-        "withdrawal-type": null,
-        "withdrawal-wallet-address": null,
-        "eft-transfer-password": null,
-        "amount-received": null,
-        "tx-hash": null
-      }
-    },
-    {
-      "id": "851",
-      "type": "sell-orders",
-      "attributes": {
-        "amount": -100000,
-        "date": "Jan 30 2018 12:12PM",
-        "type": "Sell",
-        "currency-name": "BTC",
-        "guid": "KbDrDm-3",
-        "rate": 13148.35,
-        "status": "completed",
-        "token": null,
-        "withdrawal-type": null,
-        "withdrawal-wallet-address": null,
-        "eft-transfer-password": null,
-        "amount-received": null,
-        "tx-hash": null
-      }
-    },
-    {
-      "id": "543",
-      "type": "fund-orders",
-      "attributes": {
-        "amount": 100000,
-        "date": "Jan 2 2018 7:35PM",
-        "type": "Received",
-        "currency-name": "BTC",
-        "guid": "S0zp-IrZ",
-        "rate": null,
-        "status": "completed",
-        "token": "420dddeee4",
-        "withdrawal-type": null,
-        "withdrawal-wallet-address": null,
-        "eft-transfer-password": null,
-        "amount-received": 100000,
-        "tx-hash": null
-      }
+  },
+  {
+    "id": "1007",
+    "type": "fund-orders",
+    "attributes": {
+      "amount": 280000,
+      "date": "Feb 27 2018 8:38PM",
+      "type": "Received",
+      "currency-name": "CAD",
+      "guid": "2L_M3eIs",
+      "rate": 0.933333333333333,
+      "status": "completed",
+      "token": "50bea7f7ac",
+      "withdrawal-type": null,
+      "withdrawal-wallet-address": null,
+      "eft-transfer-password": null,
+      "amount-received": null,
+      "tx-hash": null
     }
+  },
+  {
+    "id": "852",
+    "type": "buy-orders",
+    "attributes": {
+      "amount": 93112,
+      "date": "Jan 30 2018 12:13PM",
+      "type": "Buy",
+      "currency-name": "BTC",
+      "guid": "dCBU4JsK",
+      "rate": 14112.03,
+      "status": "completed",
+      "token": null,
+      "withdrawal-type": null,
+      "withdrawal-wallet-address": null,
+      "eft-transfer-password": null,
+      "amount-received": null,
+      "tx-hash": null
+    }
+  },
+  {
+    "id": "851",
+    "type": "sell-orders",
+    "attributes": {
+      "amount": -100000,
+      "date": "Jan 30 2018 12:12PM",
+      "type": "Sell",
+      "currency-name": "BTC",
+      "guid": "KbDrDm-3",
+      "rate": 13148.35,
+      "status": "completed",
+      "token": null,
+      "withdrawal-type": null,
+      "withdrawal-wallet-address": null,
+      "eft-transfer-password": null,
+      "amount-received": null,
+      "tx-hash": null
+    }
+  },
+  {
+    "id": "543",
+    "type": "fund-orders",
+    "attributes": {
+      "amount": 100000,
+      "date": "Jan 2 2018 7:35PM",
+      "type": "Received",
+      "currency-name": "BTC",
+      "guid": "S0zp-IrZ",
+      "rate": null,
+      "status": "completed",
+      "token": "420dddeee4",
+      "withdrawal-type": null,
+      "withdrawal-wallet-address": null,
+      "eft-transfer-password": null,
+      "amount-received": 100000,
+      "tx-hash": null
+    }
+  }
   ],
   "links": {
     "self": "http://localhost:3000/api/orders?page%5Bnumber%5D=1&page%5Bsize%5D=10",

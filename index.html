@@ -236,10 +236,10 @@
             <a href="#login" class="toc-h1 toc-link" data-title="login">Login</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#http-request-2" class="toc-h2 toc-link" data-title="http-request">HTTP Request</a>
+                    <a href="#http-request" class="toc-h2 toc-link" data-title="http-request">HTTP Request</a>
                   </li>
                   <li>
-                    <a href="#query-parameters-2" class="toc-h2 toc-link" data-title="query-parameters">Query Parameters</a>
+                    <a href="#query-parameters" class="toc-h2 toc-link" data-title="query-parameters">Query Parameters</a>
                   </li>
               </ul>
           </li>
@@ -247,13 +247,16 @@
             <a href="#balances" class="toc-h1 toc-link" data-title="balances">Balances</a>
           </li>
           <li>
+            <a href="#currencies" class="toc-h1 toc-link" data-title="currencies">Currencies</a>
+          </li>
+          <li>
             <a href="#orders" class="toc-h1 toc-link" data-title="orders">Orders</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#http-request-3" class="toc-h2 toc-link" data-title="http-request">HTTP Request</a>
+                    <a href="#get-all-orders" class="toc-h2 toc-link" data-title="get-all-orders">Get all orders</a>
                   </li>
                   <li>
-                    <a href="#query-parameters-3" class="toc-h2 toc-link" data-title="query-parameters">Query Parameters</a>
+                    <a href="#create-orders" class="toc-h2 toc-link" data-title="create-orders">Create Orders</a>
                   </li>
               </ul>
           </li>
@@ -319,9 +322,9 @@
   </span><span class="s2">"jwt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTk5NDkyMDR9.MAPyjxWmxGndSP6U0R5j7LMjnXAKTE7gYge61beJngs"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Login Successful"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-2'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
 <p><code>POST http://example.com/api/auth/login</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
+<h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -370,7 +373,51 @@
       </span><span class="s2">"total_balance"</span><span class="p">:</span><span class="w"> </span><span class="mf">2566.77016</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='orders'>Orders</h1>
+</span></code></pre><h1 id='currencies'>Currencies</h1>
+<blockquote>
+<p>Returns all currencies</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl 
+  -X GET 
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"Accept: application/vnd.coinberry.v1+json"</span>
+  -H <span class="s2">"Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTk5NDkyMDR9.MAPyjxWmxGndSP6U0R5j7LMjnXAKTE7gYge61beJngs"</span>
+  <span class="s2">"http://example.com/api/currencies"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"currencies"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CAD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"currencies"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"currencies"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Currency ids are required for creating Orders.</p>
+<h1 id='orders'>Orders</h1><h2 id='get-all-orders'>Get all orders</h2>
 <p>This API call is paginated. The result will always contain a links object. If there is only one page of results the &#39;next&#39; property will be null.</p>
 
 <blockquote>
@@ -492,9 +539,9 @@
     </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:3000/api/orders?page%5Bnumber%5D=1&amp;page%5Bsize%5D=10"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-3'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
 <p><code>GET http://example.com/api/orders</code></p>
-<h3 id='query-parameters-3'>Query Parameters</h3>
+<h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -514,6 +561,73 @@
 <td>Number of orders per page</td>
 <td>yes</td>
 <td>10</td>
+</tr>
+</tbody></table>
+<h2 id='create-orders'>Create Orders</h2>
+<p>This API call creates a Buy or Sell order</p>
+
+<blockquote>
+<p>Returns a list of orders</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl 
+-X POST
+-H <span class="s2">"Content-Type: application/json"</span>
+-H <span class="s2">"Accept: application/vnd.coinberry.v1+json"</span>
+-H <span class="s2">"Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTk5NDkyMDR9.MAPyjxWmxGndSP6U0R5j7LMjnXAKTE7gYge61beJngs"</span>
+-d <span class="s1">'{"order": { "from_currency_id": 1, "to_currency_id": 2, "amount_fractional": 0.01, "type": "BuyOrder"}}'</span>
+<span class="s2">"http://example.com/api/orders"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy-orders"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mar 9 2018 8:50AM"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Buy"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currency-name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"guid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vKV810AY"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">18000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jBSBa2CAakw"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"withdrawal-type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"withdrawal-wallet-address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"eft-transfer-password"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount-received"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tx-hash"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"processed-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1520603438</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST http://example.com/api/orders</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<p>All parameters are required</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from_currency_id</td>
+<td>Source currency</td>
+</tr>
+<tr>
+<td>to_currency_id</td>
+<td>Target currency</td>
+</tr>
+<tr>
+<td>amount_fractional</td>
+<td>Amount in either ETH or BTC</td>
+</tr>
+<tr>
+<td>type</td>
+<td>Type of order (BuyOrder or SellOrder)</td>
 </tr>
 </tbody></table>
 

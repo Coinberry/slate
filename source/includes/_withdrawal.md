@@ -56,6 +56,7 @@ to_currency_id | Target currency |
 amount_fractional | Amount in either CAD, ETH or BTC |
 withdrawal_type | Either eft or wallet
 eft_transfer_password | Required for withdrawals of type eft
+withdrawal_wallet_address | Required for withdrawals of type wallet
 
 
 

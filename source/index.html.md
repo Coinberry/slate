@@ -11,6 +11,7 @@ includes:
   - balances
   - currencies
   - orders
+  - withdrawal
 
 search: true
 ---

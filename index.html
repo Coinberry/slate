@@ -268,6 +268,22 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#funds" class="toc-h1 toc-link" data-title="funds">Funds</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-fund" class="toc-h2 toc-link" data-title="create-fund">Create Fund</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#ticker" class="toc-h1 toc-link" data-title="ticker">Ticker</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-ticker" class="toc-h2 toc-link" data-title="get-ticker">Get Ticker</a>
+                  </li>
+              </ul>
+          </li>
       </div>
     </div>
     <div class="page-wrapper">
@@ -709,6 +725,117 @@
 <tr>
 <td>withdrawal_wallet_address</td>
 <td>Required for withdrawals of type wallet</td>
+</tr>
+</tbody></table>
+<h1 id='funds'>Funds</h1><h2 id='create-fund'>Create Fund</h2>
+<p>This API call creates a Fund order</p>
+
+<blockquote>
+<p>Creates a fund order and returns it</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl 
+-X POST
+-H <span class="s2">"Content-Type: application/json"</span>
+-H <span class="s2">"Accept: application/vnd.coinberry.v1+json"</span>
+-H <span class="s2">"Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTk5NDkyMDR9.MAPyjxWmxGndSP6U0R5j7LMjnXAKTE7gYge61beJngs"</span>
+-d <span class="s1">'{"fund_order": { "from_currency_id": 1, "to_currency_id": 2, "amount_fractional": 0.01, "funding_type": "btc"}}'</span>
+<span class="s2">"http://example.com/api/fund_orders"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fund-orders"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mar 19 2018 3:20PM"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sending"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency-name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"guid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZJzJafkf"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZWboCheYcCQ"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fund-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eft"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fund-wallet-address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"eft-transfer-password"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount-received"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tx-hash"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"processed-at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"wallet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muszEWphc8wCAbCaZZKtQ2yo5WaZM433A4"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>POST http://example.com/api/fund_orders</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from_currency_id</td>
+<td>Source currency</td>
+</tr>
+<tr>
+<td>to_currency_id</td>
+<td>Target currency</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>Amount as integer in either CAD cents or BTC satoshi</td>
+</tr>
+<tr>
+<td>amount_fractional</td>
+<td>Amount in either CAD or BTC</td>
+</tr>
+<tr>
+<td>funding_type</td>
+<td>Either btc or &quot;EFT/e-Transfer&quot;</td>
+</tr>
+</tbody></table>
+<h1 id='ticker'>Ticker</h1><h2 id='get-ticker'>Get Ticker</h2>
+<p>This API call returns the exchange rate between two given currencies</p>
+
+<blockquote>
+<p>Gets the ticker for CAD to BTC exchange</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl 
+-X POST
+-H <span class="s2">"Content-Type: application/json"</span>
+-H <span class="s2">"Accept: application/vnd.coinberry.v1+json"</span>
+-H <span class="s2">"Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTk5NDkyMDR9.MAPyjxWmxGndSP6U0R5j7LMjnXAKTE7gYge61beJngs"</span>
+<span class="s2">"http://example.com/api/ticker/cad/btc"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"from_currency_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CAD"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"to_currency_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="mf">11358.0</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="mf">11497.3</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-27 02:12:54"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET http://example.com/api/ticker/:from_currency_name/:to_currency_name</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter---------</th>
+<th>Description----------------------</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from_currency_name</td>
+<td>Source currency three letter code</td>
+</tr>
+<tr>
+<td>to_currency_name</td>
+<td>Target currency three letter code</td>
 </tr>
 </tbody></table>
 

@@ -13,6 +13,7 @@ includes:
   - orders
   - withdrawal
   - fund
+  - ticker
 
 search: true
 ---

@@ -12,6 +12,7 @@ includes:
   - currencies
   - orders
   - withdrawal
+  - ticker
 
 search: true
 ---

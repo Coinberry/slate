@@ -12,6 +12,7 @@ includes:
   - currencies
   - orders
   - withdrawal
+  - fund
 
 search: true
 ---

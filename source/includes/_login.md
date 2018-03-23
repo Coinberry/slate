@@ -19,6 +19,18 @@ curl
 }
 ```
 
+> The jwt token encodes the following data
+
+```
+{
+  "user_id": 1,
+  "display_name": "John",
+  "email": "john.doe@example.com",
+  "exp": 1521825916,
+  "status": "verified"
+}
+```
+
 ### HTTP Request
 
 `POST http://example.com/api/auth/login`

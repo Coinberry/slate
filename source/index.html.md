@@ -14,7 +14,7 @@ includes:
   - withdrawal
   - fund
   - ticker
-  - identity_validation
+  - account_details
 
 search: true
 ---

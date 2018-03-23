@@ -14,6 +14,7 @@ includes:
   - withdrawal
   - fund
   - ticker
+  - account_details
 
 search: true
 ---

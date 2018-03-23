@@ -53,7 +53,7 @@ curl
 -H "Content-Type: application/json"
 -H "Accept: application/vnd.coinberry.v1+json"
 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTk5NDkyMDR9.MAPyjxWmxGndSP6U0R5j7LMjnXAKTE7gYge61beJngs"
--d '{"account_detail": { "first_name": "John", "last_name": "Doe", "dob": "1982-11-11", "address_1": "123 Main St.", "city": "Toronto", "postal": "M2M2J2", "country": "Canada", "province": "ON" }}'
+-d '{"account_detail": { "first_name": "John", "last_name": "Doe", "dob": "1982-11-11", "address_1": "123 Main St.", "city": "Toronto", "postal": "M2M2J2", "province": "ON" }}'
 "http://example.com/api/account_details"
 ```
 

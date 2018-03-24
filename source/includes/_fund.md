@@ -59,5 +59,99 @@ amount_fractional | Amount in either CAD or BTC |
 funding_type | Either btc or "EFT/e-Transfer"
 
 
+## Get a Fund Order
+
+This API returns a fund order given a global id
+
+> Returns a Fund Order
+
+```shell
+curl 
+-X POST
+-H "Content-Type: application/json"
+-H "Accept: application/vnd.coinberry.v1+json"
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTk5NDkyMDR9.MAPyjxWmxGndSP6U0R5j7LMjnXAKTE7gYge61beJngs"
+"http://example.com/api/fund_orders/J_xIdN4F"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "id": "571",
+      "type": "fund-orders",
+      "attributes": {
+        "amount": 160000000000,
+        "date": "Mar 24 2018 2:53PM",
+        "type": "Receiving",
+        "currency-name": "BTC",
+        "guid": "J_xIdN4F",
+        "rate": null,
+        "status": "pending",
+        "token": "3f835aa255",
+        "withdrawal-type": null,
+        "withdrawal-wallet-address": null,
+        "eft-transfer-password": null,
+        "amount-received": null,
+        "tx-hash": null,
+        "processed-at": null,
+        "wallet": "mhxJgnfMeeTXTfCexq3CySConT4ZwjFgxq"
+      }
+  }
+}
+```
+
+### HTTP Request
+
+`GET http://example.com/api/fund_orders/J_xIdN4F`
+
+### Query Parameters
+
+Parameter | Description |
+--------- | ----------- |
+id | Fund order guid  |
 
 
+## Fund Order Transactions
+
+This API returns the blockchain transactions for a BTC Fund Order
+
+> Returns transaction details for a fund order
+
+```shell
+curl 
+-X POST
+-H "Content-Type: application/json"
+-H "Accept: application/vnd.coinberry.v1+json"
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTk5NDkyMDR9.MAPyjxWmxGndSP6U0R5j7LMjnXAKTE7gYge61beJngs"
+"http://example.com/api/fund_orders/J_xIdN4F/transactions"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "transactions",
+      "attributes": {
+        "address": "mhxJgnfMeeTXTfCexq3CySConT4ZwjFgxq",
+        "total_received": 0,
+        "balance": 0,
+        "unconfirmed_balance": 0,
+        "final_balance": 0,
+        "txs": []
+      }
+  }
+}
+```
+
+### HTTP Request
+
+`GET http://example.com/api/fund_orders/J_xIdN4F/transactions`
+
+### Query Parameters
+
+Parameter | Description |
+--------- | ----------- |
+id | Fund order guid  |

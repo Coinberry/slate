@@ -27,7 +27,8 @@ curl
   "display_name": "John",
   "email": "john.doe@example.com",
   "exp": 1521825916,
-  "status": "verified"
+  "status": "verified",
+  "referral_token": "W$34%34"
 }
 ```
 
